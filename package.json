@@ -1,0 +1,23 @@
+{
+  "name": "routes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard",
+    "fix": "standard --fix",
+    "fetch_perms_list": "./fetch_perms_list.js",
+    "tracks": "./tracks.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/togeojson": "^0.16.0",
+    "axios": "^0.16.2",
+    "sha.js": "^2.4.8",
+    "topojson-server": "^3.0.0"
+  },
+  "devDependencies": {
+    "standard": "^10.0.2"
+  }
+}
