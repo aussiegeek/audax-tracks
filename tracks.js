@@ -9,6 +9,17 @@ const topojson = require('topojson-server')
 const rides = JSON.parse(fs.readFileSync('perms.json'))
 const DOMParser = require('xmldom').DOMParser
 
+const regions = {
+  211501: "ACT",
+  311501: "NSW",
+  411501: "Victoria",
+  511501: "WA",
+  611501: "SA",
+  711501: "Queensland",
+  811501: "Tasmania",
+  911501: "NT"
+}
+
 function fetchRideWithGPS (url) {
   const gpxURL = url + '.gpx?sub_format=track'
   return axios.get(gpxURL)
@@ -111,7 +122,8 @@ function downloadTracks (ride) {
           description: ride.txtRideDescription,
           distance: ride.intRideDistanceNominal + 'km',
           links: [ride.directlink],
-          topoJson: topojsonPaths
+          topoJson: topojsonPaths,
+          region: regions[ride.lngRegionCode]
         }
       } else {
         console.log('No tracks links found for ' + ride.txtRideName)
