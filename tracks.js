@@ -29,12 +29,16 @@ function fetchRideWithGPS (url) {
       }
       return response.data
     })
+    .catch(error => {
+      console.log('------')      
+      console.log(`Error fetching ${gpxURL}`)
+    })
 }
 
 function fetchBikeRouteToaster (url) {
   const id = /(?:Course.aspx\?course=|BRTWebUI\/Course\/)(\d+)/.exec(url)[1]
-
-  return axios.get('http://bikeroutetoaster.com/api/BRT.WebUI/Course/GetCourse/' + id)
+  const fetchUrl = 'http://bikeroutetoaster.com/api/BRT.WebUI/Course/GetCourse/' + id
+  return axios.get(fetchUrl)
     .then(response => {
       if (response.status === 404) {
         console.log('Course not found')
@@ -42,6 +46,11 @@ function fetchBikeRouteToaster (url) {
       }
       return axios.post('http://bikeroutetoaster.com/BRTWebUI/Export/GPX', {data: response.data.CourseFile}).then(r => r.data)
     })
+    .catch(error => {
+      console.log('------')
+      console.log(`Error fetching ${fetchUrl}`)
+    })
+
 }
 
 function fetchGeoJSON (gpx) {
