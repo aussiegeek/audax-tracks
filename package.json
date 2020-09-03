@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/togeojson": "^0.16.0",
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "sha.js": "^2.4.8",
     "topojson-server": "^3.0.0"
   },
